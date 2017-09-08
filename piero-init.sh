@@ -9,13 +9,13 @@ echo "Cloning piero repository"
 rm -rf piero
 git clone https://github.com/hornej/piero.git
 
+echo "Installing CHIP_IO"
+cd piero
+pip install CHIP_IO
+cd ..
+
 echo "Downloading nvm"
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
-
-# echo "Resetting the terminal for nvm not implemented"
-
-# echo "Install Node.js v8.4.0"
-# nvm install 8.4.0
 
 echo "Copying piero-init.service to /etc/systemd/system directory"
 cd piero-init
