@@ -1,4 +1,5 @@
-echo "Cloning repository not implemented"
+echo "Cloning piero-init repository not implemented"
+echo "Cloning piero repository not implemented"
 
 echo "Downloading nvm"
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
