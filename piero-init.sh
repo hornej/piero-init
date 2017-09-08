@@ -25,3 +25,4 @@ systemctl enable piero-init.service
 echo "Initialization successful"
 
 echo "Restarting device"
+reboot
