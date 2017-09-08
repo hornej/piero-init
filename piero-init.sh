@@ -3,7 +3,7 @@ cd /home/chip
 
 echo "Cloning piero-init repository"
 rm -rf piero-init
-git clone https://github.com/lastmjs/piero-init.git
+git clone https://github.com/hornej/piero-init.git
 
 echo "Installing npm dependencies"
 cd piero-init

@@ -7,13 +7,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lastmjs/piero-init.git"
+    "url": "git+https://github.com/hornej/piero-init.git"
   },
   "author": "Jordan Last <jordan.michael.last@gmail.com>",
   "bugs": {
-    "url": "https://github.com/lastmjs/piero-init/issues"
+    "url": "https://github.com/hornej/piero-init/issues"
   },
-  "homepage": "https://github.com/lastmjs/piero-init#readme",
+  "homepage": "https://github.com/hornej/piero-init#readme",
   "dependencies": {
     "node-schedule": "^1.2.4",
     "nodemailer": "^4.1.0",
