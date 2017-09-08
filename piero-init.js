@@ -1,10 +1,14 @@
 const schedule = require('node-schedule');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
+const SMTPServer = require('smtp-server');
+const smtpServer = new SMTPServer();
+const smtpServerPort = 25;
+smtpServer.listen(smtpServerPort);
 const smtpTransport = require('nodemailer-smtp-transport');
 const transporter = nodemailer.createTransport(smtpTransport({
     host: 'localhost',
-    port: 25,
+    port: smtpServerPort,
     auth: {
         user: 'username',
         pass: 'password'
