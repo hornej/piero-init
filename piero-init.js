@@ -1,8 +1,15 @@
 const schedule = require('node-schedule');
 const fs = require('fs');
 const nodemailer = require('nodemailer');
-
-const transporter = nodemailer.createTransport();
+const smtpTransport = require('nodemailer-smtp-transport');
+const transporter = nodemailer.createTransport(smtpTransport({
+    host: 'localhost',
+    port: 25,
+    auth: {
+        user: 'username',
+        pass: 'password'
+    }
+}));
 const childProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
 
 schedule.scheduleJob({
