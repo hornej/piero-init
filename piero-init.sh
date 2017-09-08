@@ -2,9 +2,11 @@ echo "Move to /home/chip"
 cd /home/chip
 
 echo "Cloning piero-init repository"
+rm -rf piero-init
 git clone https://github.com/lastmjs/piero-init.git
 
 echo "Cloning piero repository"
+rm -rf piero
 git clone https://github.com/hornej/piero.git
 
 echo "Downloading nvm"
