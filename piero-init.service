@@ -1,0 +1,9 @@
+[Unit]
+Description=automatically pull the piero repo on a schedule
+
+[Service]
+Type=oneshot
+ExecStart=nvm use stable && node ~/piero-init/piero-init.js
+
+[Install]
+WantedBy=multi-user.target
