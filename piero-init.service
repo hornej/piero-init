@@ -3,7 +3,7 @@ Description=Initialize the script to automatically pull the piero repo on a sche
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/node /home/chip/piero-init/piero-init.js
+ExecStart=cd /home/chip && /usr/bin/node /home/chip/piero-init/piero-init.js
 
 [Install]
 WantedBy=multi-user.target
