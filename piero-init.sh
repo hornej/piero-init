@@ -5,6 +5,11 @@ echo "Cloning piero-init repository"
 rm -rf piero-init
 git clone https://github.com/lastmjs/piero-init.git
 
+echo "Installing npm dependencies"
+cd piero-init
+npm install
+cd ..
+
 echo "Cloning piero repository"
 rm -rf piero
 git clone https://github.com/hornej/piero.git
