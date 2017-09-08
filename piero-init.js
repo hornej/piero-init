@@ -1,2 +1,1 @@
-const fs = require('fs');
-fs.writeFileSync(`/home/chip/test-${new Date()}`, new Date());
+const childProcess = require('child_process').spawn('python /home/chip/piero/chip_scan.py');
