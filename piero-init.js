@@ -40,7 +40,7 @@ function sendMessage(objectName, objectContents, numTries) {
         fs.writeFileSync(`/home/chip/piero-init-send-message-out-of-tries-${new Date()}`, 'The request was retried too many times and failed every time');
         return;
     }
-    
+
     return fetch(`https://piero-test.s3.amazonaws.com/${objectName}-${new Date().toString().split(' ').join('')}`, {
         method: 'put',
         headers: {
@@ -52,6 +52,8 @@ function sendMessage(objectName, objectContents, numTries) {
     })
     .catch((error) => {
         fs.writeFileSync(`/home/chip/piero-init-send-message-error-${new Date()}`, error);
-        sendMessage(objectName, objectContents, numTries - 1);
+        setTimeout(() => {
+            sendMessage(objectName, objectContents, numTries - 1);
+        }, 1000);
     });
 }
