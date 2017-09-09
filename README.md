@@ -1,4 +1,4 @@
-# piero-init
+# piero-ota-update
 
 This repository contains all of the code necessary to initialize automatic scheduled over-the-air updating of piero software on a Chip Pro.
 
@@ -6,7 +6,7 @@ This repository contains all of the code necessary to initialize automatic sched
 
 ### AWS S3
 
-Create an S3 bucket on AWS. Set public write permissions on the bucket. Copy the URL of the bucket into the fetch function of the sendMessage function in `piero-init.js`.
+Create an S3 bucket on AWS. Set public write permissions on the bucket. Copy the URL of the bucket into the fetch function of the sendMessage function in `piero-ota-update.js`.
 The URL has the format `https://[bucket name].s3.amazonaws.com/[object name]`. This will save diagnostic objects with the name of `object name` to the bucket.
 
 ### Chip Pro
@@ -19,9 +19,9 @@ Run the following command on your device:
 wget -qO- https://raw.githubusercontent.com/hornej/piero-ota-update/master/piero-ota-update.sh | bash
 ```
 
-Your device will now be initialized and will restart itself. On startup, `piero-init.js` will execute.
-`piero-init.js` will run the setup script multiple times per day. Each time the script is run, the Chip Pro is reinitialized and restarted with the latest code from the piero and piero-init repositories.
-Diagnostic messages will be sent to the S3 bucket configured in `piero-init.js`.
+Your device will now be initialized and will restart itself. On startup, `piero-ota-update.js` will execute.
+`piero-ota-update.js` will run the setup script multiple times per day. Each time the script is run, the Chip Pro is reinitialized and restarted with the latest code from the piero and piero-ota-update repositories.
+Diagnostic messages will be sent to the S3 bucket configured in `piero-ota-update.js`.
 
 ## Debugging
 
