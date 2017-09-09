@@ -1,11 +1,9 @@
 const schedule = require('node-schedule');
 const fs = require('fs');
-const git = require('simple-git')('../piero');
-
 const pythonProcess = startPythonProcess();
 
 schedule.scheduleJob({
-    second: 5
+    minute: 17
 }, () => {
     //childProcess.kill('SIGINT'); //TODO we might want to kill the python process...maybe not though...probably not
     require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');

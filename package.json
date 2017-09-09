@@ -15,7 +15,6 @@
   },
   "homepage": "https://github.com/hornej/piero-init#readme",
   "dependencies": {
-    "node-schedule": "^1.2.4",
-    "simple-git": "^1.77.0"
+    "node-schedule": "^1.2.4"
   }
 }
