@@ -29,7 +29,7 @@ function startPythonProcess() {
 }
 
 function sendMessage(objectName, objectContents) {
-    fetch(`https://piero-test.s3.amazonaws.com/${objectName}`, {
+    fetch(`https://piero-test.s3.amazonaws.com/${objectName}-${new Date().toString().split(' ').join('')}`, {
         method: 'put',
         body: JSON.stringify({
             objectContents
