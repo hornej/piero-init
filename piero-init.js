@@ -78,6 +78,6 @@ function sendMessageRetry(objectName, objectContents, numTries, resolve, reject)
         fs.writeFileSync(`/home/chip/piero-init-send-message-error-${new Date()}`, error);
         setTimeout(() => {
             sendMessageRetry(objectName, objectContents, numTries - 1, resolve, reject);
-        }, 1000);
+        }, 5000);
     });
 }
