@@ -83,6 +83,7 @@ function sendMessageRetry(objectName, objectContents, numTries, resolve, reject)
         });
     }
     catch(error) {
+        fs.writeFileSync(`/home/chip/piero-ota-update-send-message-error-${new Date()}`, error);
         setTimeout(() => {
             sendMessageRetry(objectName, objectContents, numTries - 1, resolve, reject);
         }, 5000);
