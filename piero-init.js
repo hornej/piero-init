@@ -5,7 +5,7 @@ const fetch = require('isomorphic-fetch')
 startPythonProcess();
 
 schedule.scheduleJob({
-    second: 10
+    minute: 10
 }, () => {
     sendMessage(`START_UPDATE`, '');
     require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
