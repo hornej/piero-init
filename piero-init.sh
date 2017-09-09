@@ -1,5 +1,7 @@
-#TODO install node 8 and use async/await
 #TODO use correct time: sudo apt-get install ntp
+
+echo "Downloading nvm"
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
 
 echo "Move to /home/chip"
 cd /home/chip
@@ -21,9 +23,6 @@ echo "Installing CHIP_IO"
 cd piero
 pip install CHIP_IO
 cd ..
-
-echo "Downloading nvm"
-wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh | bash
 
 echo "Copying piero-init.service to /etc/systemd/system directory"
 cd piero-init

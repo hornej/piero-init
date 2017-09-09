@@ -13,13 +13,13 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
             })
             .then(() => {
                 schedule.scheduleJob({
-                    minute: 5
+                    second: 15
                 }, () => {
                     performUpdate(pythonProcess);
                 });
 
                 schedule.scheduleJob({
-                    minute: 10
+                    second: 45
                 }, () => {
                     performUpdate(pythonProcess);
                 });
@@ -30,6 +30,7 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
 });
 
 function performUpdate(pythonProcess) {
+    //TODO Try not killing the python process, I don't think it is actually necessary or helpful
     sendMessage('KILL_PYTHON_PROCESS', '', 100)
     .then(() => {
         pythonProcess.kill('SIGINT');
