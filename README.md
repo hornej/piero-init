@@ -10,7 +10,7 @@ Run the following command on your device:
 
 TODO change ownership of this repo to Josh
 ```bash
-wget -qO- https://raw.githubusercontent.com/lastmjs/piero-init/master/piero-init.sh | bash
+wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash
 ```
 
 Your device will now be initialized and will restart itself. On startup, piero-init.js will execute.
