@@ -2,7 +2,14 @@
 
 This repository contains all of the code necessary to initialize a Chip Pro for use with piero.
 
-## Use
+## Setup
+
+### AWS S3
+
+Create an S3 bucket on AWS. Set public write permissions on the bucket. Copy the URL of the bucket into the fetch function of the sendMessage function in `piero-init.js`.
+The URL has the format `https://[bucket name].s3.amazonaws.com/message`. This will save diagnostic objects with the name of `message` to the bucket.
+
+### Chip Pro
 
 Make sure you can connect to your device, and that it is connected to the internet. [See here for more detailed information](https://docs.getchip.com/chip_pro.html#connect-and-control).
 
@@ -12,7 +19,6 @@ Run the following command on your device:
 wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash
 ```
 
-Your device will now be initialized and will restart itself. On startup, piero-init.js will execute.
-piero-init.js causes the piero repo's master branch to be updated from the master branch on GitHub multiple times per day.
-When a successful pull occurs, the piero code is stopped and then restarted with the current version on the master branch.
-The status of the pulls to the piero repo will be emailed to the encoded email addresses.
+Your device will now be initialized and will restart itself. On startup, `piero-init.js` will execute.
+`piero-init.js` will run the setup script multiple times per day. Each time the script is run, the Chip Pro is reinitialized and restarted with the latest code from the piero and piero-init repositories.
+Diagnostic messages will be sent to the S3 bucket configured in `piero-init.js`.

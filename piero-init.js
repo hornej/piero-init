@@ -35,6 +35,6 @@ function sendMessage(message) {
         })
     })
     .catch((error) => {
-        fs.writeFileSync(`/home/chip/piero-init-error-${new Date()}`, error);
+        fs.writeFileSync(`/home/chip/piero-init-send-message-error-${new Date()}`, error);
     });
 }
