@@ -13,17 +13,17 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
     return sendMessage('SCHEDULE_UPDATES', '', 100);
 })
 .then(() => {
-    schedule.scheduleJob({
-        second: 15
-    }, () => {
-        performUpdate();
-    });
-
-    schedule.scheduleJob({
-        second: 45
-    }, () => {
-        performUpdate();
-    });
+    // schedule.scheduleJob({
+    //     second: 15
+    // }, () => {
+    //     performUpdate();
+    // });
+    //
+    // schedule.scheduleJob({
+    //     second: 45
+    // }, () => {
+    //     performUpdate();
+    // });
 })
 .then(() => {
     return sendMessage('UPDATES_SCHEDULED', '', 100);
@@ -31,9 +31,9 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
 
 function performUpdate() {
     sendMessage(`START_UPDATE`, '', 100)
-    // .then(() => {
-    //     require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-ota-update/master/piero-ota-update.sh | bash');
-    // });
+    .then(() => {
+        require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-ota-update/master/piero-ota-update.sh | bash');
+    });
 }
 
 function startPythonProcess() {
