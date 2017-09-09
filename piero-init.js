@@ -7,47 +7,47 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
     return startPythonProcess();
 })
 .then((pythonProcess) => {
-    return sendMessage('PYTHON_PROCESS_STARTED', '', 100);
-})
-.then(() => {
-    return sendMessage('SCHEDULE_UPDATES', '', 100);
-}).
-then(() => {
-    schedule.scheduleJob({
-        second: 10
-    }, () => {
-        sendMessage('KILL_PYTHON_PROCESS', '', 100);
-        // .then(() => {
-        //     pythonProcess.kill('SIGINT');
-        // })
-        // .then(() => {
-        //     return sendMessage(`PYTHON_PROCESS_KILLED`, '', 100);
-        // })
-        // .then(() => {
-        //     return sendMessage(`START_UPDATE`, '', 100);
-        // })
-        // // .then(() => {
-        // //     require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
-        // // });
-    });
-})
-.then(() => {
-    return sendMessage('UPDATES_SCHEDULED', '', 100);
+    return sendMessage('PYTHON_PROCESS_STARTED', '', 100)
+            .then(() => {
+                return sendMessage('SCHEDULE_UPDATES', '', 100);
+            })
+            .then(() => {
+                schedule.scheduleJob({
+                    second: 10
+                }, () => {
+                    sendMessage('KILL_PYTHON_PROCESS', '', 100);
+                    .then(() => {
+                        pythonProcess.kill('SIGINT');
+                    })
+                    .then(() => {
+                        return sendMessage(`PYTHON_PROCESS_KILLED`, '', 100);
+                    })
+                    .then(() => {
+                        return sendMessage(`START_UPDATE`, '', 100);
+                    })
+                    // // .then(() => {
+                    // //     require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
+                    // // });
+                });
+            })
+            .then(() => {
+                return sendMessage('UPDATES_SCHEDULED', '', 100);
+            });
 });
 
 function startPythonProcess() {
-    // const pythonProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
-    // pythonProcess.on('error', (error) => {
-    //     sendMessage(`PYTHON_PROCESS_ERROR`, error.toString(), 100);
-    // });
-    // pythonProcess.stdout.on('data', (data) => {
-    //     sendMessage(`PYTHON_PROCESS_STDOUT`, data.toString(), 100);
-    // });
-    // pythonProcess.stderr.on('data', (data) => {
-    //     sendMessage(`PYTHON_PROCESS_STDERR`, data.toString(), 100);
-    // });
-    //
-    // return pythonProcess
+    const pythonProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
+    pythonProcess.on('error', (error) => {
+        sendMessage(`PYTHON_PROCESS_ERROR`, error.toString(), 100);
+    });
+    pythonProcess.stdout.on('data', (data) => {
+        sendMessage(`PYTHON_PROCESS_STDOUT`, data.toString(), 100);
+    });
+    pythonProcess.stderr.on('data', (data) => {
+        sendMessage(`PYTHON_PROCESS_STDERR`, data.toString(), 100);
+    });
+
+    return pythonProcess
 }
 
 function sendMessage(objectName, objectContents, numTries) {
