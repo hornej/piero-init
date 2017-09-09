@@ -8,9 +8,9 @@ startPythonProcess().then((pythonProcess) => {
     }, () => {
         sendMessage(`KILL_PYTHON_PROCESS`, '');
         pythonProcess.kill('SIGINT');
-        
+
         sendMessage(`START_UPDATE`, '');
-        // require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
+        require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
     });
 });
 
