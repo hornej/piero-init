@@ -25,7 +25,7 @@ function startPythonProcess() {
         sendMessage(`python process stderr: ${data}`);
     });
     sendMessage(`python process started`);
-    // fs.writeFileSync(`/home/chip/child-process-started-${new Date()}`, 'child-process-started');
+    fs.writeFileSync(`/home/chip/child-process-started-${new Date()}`, 'child-process-started');
     return pythonProcess;
 }
 
