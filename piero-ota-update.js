@@ -1,7 +1,6 @@
 const schedule = require('node-schedule');
 const fs = require('fs');
 const fetch = require('isomorphic-fetch');
-// const wlan0Mac = require('os').networkInterfaces().wlan0[0].mac;
 const wlan0Mac = 'a-mac-address';
 
 sendMessage(`START_PYTHON_PROCESS`, '', 100)
@@ -9,7 +8,7 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
     return startPythonProcess();
 })
 .then(() => {
-    return sendMessage('PYTHON_PROCESS_STARTED', '', 100)
+    return sendMessage('PYTHON_PROCESS_STARTED', '', 100);
 })
 .then(() => {
     return sendMessage('SCHEDULE_UPDATES', '', 100);
@@ -18,13 +17,13 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
     schedule.scheduleJob({
         second: 15
     }, () => {
-        performUpdate(pythonProcess);
+        performUpdate();
     });
 
     schedule.scheduleJob({
         second: 45
     }, () => {
-        performUpdate(pythonProcess);
+        performUpdate();
     });
 })
 .then(() => {
@@ -58,27 +57,34 @@ function sendMessage(objectName, objectContents, numTries) {
 }
 
 function sendMessageRetry(objectName, objectContents, numTries, resolve, reject) {
-    if (numTries === 0) {
-        fs.writeFileSync(`/home/chip/piero-ota-update-send-message-out-of-tries-${new Date()}`, 'The request was retried too many times and failed every time');
-        reject();
-    }
+    try {
+        if (numTries === 0) {
+            fs.writeFileSync(`/home/chip/piero-ota-update-send-message-out-of-tries-${new Date()}`, 'The request was retried too many times and failed every time');
+            reject();
+        }
 
-    fetch(`https://piero-test.s3.amazonaws.com/${wlan0Mac}-${objectName}-${new Date().toString().split(' ').join('-')}`, {
-        method: 'put',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            objectContents
+        fetch(`https://piero-test.s3.amazonaws.com/${require('os').networkInterfaces().wlan0[0].mac}-${objectName}-${new Date().toString().split(' ').join('-')}`, {
+            method: 'put',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                objectContents
+            })
         })
-    })
-    .then(() => {
-        resolve();
-    })
-    .catch((error) => {
-        fs.writeFileSync(`/home/chip/piero-ota-update-send-message-error-${new Date()}`, error);
+        .then(() => {
+            resolve();
+        })
+        .catch((error) => {
+            fs.writeFileSync(`/home/chip/piero-ota-update-send-message-error-${new Date()}`, error);
+            setTimeout(() => {
+                sendMessageRetry(objectName, objectContents, numTries - 1, resolve, reject);
+            }, 5000);
+        });
+    }
+    catch(error) {
         setTimeout(() => {
             sendMessageRetry(objectName, objectContents, numTries - 1, resolve, reject);
         }, 5000);
-    });
+    }
 }
