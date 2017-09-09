@@ -1,6 +1,6 @@
 const schedule = require('node-schedule');
 const fs = require('fs');
-const git = require('simple-git')('../es-no-build');
+const git = require('simple-git')('../piero');
 
 const childProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
 
@@ -10,7 +10,7 @@ schedule.scheduleJob({
     git.silent(true).pull('origin', 'master', (error, data) => {
         if (error) {
             //TODO send out failure message
-            fs.writeFileSync(`/home/chip/error-${new Date()}`, 'it worked');
+            fs.writeFileSync(`/home/chip/error-${new Date()}`, error);
             return;
         }
 
@@ -20,7 +20,7 @@ schedule.scheduleJob({
             //TODO start the python process again
             //TODO send out success message
             childProcess.kill('SIGINT');
-            fs.writeFileSync(`/home/chip/success-${new Date()}`, 'it worked');
+            fs.writeFileSync(`/home/chip/success-${new Date()}`, data);
             return;
         }
     });
