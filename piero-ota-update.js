@@ -42,7 +42,7 @@ function performUpdate(pythonProcess) {
         return sendMessage(`START_UPDATE`, '', 100);
     })
     .then(() => {
-        require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
+        require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-ota-update/master/piero-ota-update.sh | bash');
     });
 }
 
@@ -69,7 +69,7 @@ function sendMessage(objectName, objectContents, numTries) {
 
 function sendMessageRetry(objectName, objectContents, numTries, resolve, reject) {
     if (numTries === 0) {
-        fs.writeFileSync(`/home/chip/piero-init-send-message-out-of-tries-${new Date()}`, 'The request was retried too many times and failed every time');
+        fs.writeFileSync(`/home/chip/piero-ota-update-send-message-out-of-tries-${new Date()}`, 'The request was retried too many times and failed every time');
         reject();
     }
 
@@ -86,7 +86,7 @@ function sendMessageRetry(objectName, objectContents, numTries, resolve, reject)
         resolve();
     })
     .catch((error) => {
-        fs.writeFileSync(`/home/chip/piero-init-send-message-error-${new Date()}`, error);
+        fs.writeFileSync(`/home/chip/piero-ota-update-send-message-error-${new Date()}`, error);
         setTimeout(() => {
             sendMessageRetry(objectName, objectContents, numTries - 1, resolve, reject);
         }, 5000);

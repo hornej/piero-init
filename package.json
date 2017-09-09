@@ -1,19 +1,19 @@
 {
-  "name": "piero-init",
+  "name": "piero-ota-update",
   "version": "0.0.0",
-  "description": "This repository contains all of the code necessary to initialize a Chip Pro for use with piero.",
+  "description": "This repository contains all of the code necessary to initialize automatic scheduled over-the-air updating of piero software on a Chip Pro.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hornej/piero-init.git"
+    "url": "git+https://github.com/hornej/piero-ota-update.git"
   },
   "author": "Jordan Last <jordan.michael.last@gmail.com>",
   "bugs": {
-    "url": "https://github.com/hornej/piero-init/issues"
+    "url": "https://github.com/hornej/piero-ota-update/issues"
   },
-  "homepage": "https://github.com/hornej/piero-init#readme",
+  "homepage": "https://github.com/hornej/piero-ota-update#readme",
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
     "node-schedule": "^1.2.4"
