@@ -4,12 +4,12 @@ const fetch = require('isomorphic-fetch')
 
 startPythonProcess();
 
-schedule.scheduleJob({
-    minute: 10
-}, () => {
-    sendMessage(`START_UPDATE`, '');
-    require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
-});
+// schedule.scheduleJob({
+//     minute: 10
+// }, () => {
+//     sendMessage(`START_UPDATE`, '');
+//     require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
+// });
 
 function startPythonProcess() {
     const pythonProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
