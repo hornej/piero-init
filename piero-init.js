@@ -13,20 +13,20 @@ schedule.scheduleJob({
 });
 
 function startPythonProcess() {
-    // const pythonProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
-    // pythonProcess.on('error', (error) => {
-    //     sendMessage(`PYTHON_PROCESS_ERROR`, error);
-    // });
-    // pythonProcess.stdout.on('data', (data) => {
-    //     sendMessage(`PYTHON_PROCESS_STDOUT`, data);
-    // });
-    // pythonProcess.stderr.on('data', (data) => {
-    //     sendMessage(`PYTHON_PROCESS_STDERR`, data);
-    // });
+    const pythonProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
+    pythonProcess.on('error', (error) => {
+        sendMessage(`PYTHON_PROCESS_ERROR`, error);
+    });
+    pythonProcess.stdout.on('data', (data) => {
+        sendMessage(`PYTHON_PROCESS_STDOUT`, data);
+    });
+    pythonProcess.stderr.on('data', (data) => {
+        sendMessage(`PYTHON_PROCESS_STDERR`, data);
+    });
 
     sendMessage(`PYTHON_PROCESS_STARTED`, '');
 
-    // return pythonProcess;
+    return pythonProcess;
 }
 
 function sendMessage(objectName, objectContents) {
