@@ -62,7 +62,8 @@ function sendMessageRetry(objectName, objectContents, numTries, resolve, reject)
             reject();
         }
 
-        fetch(`https://piero-test.s3.amazonaws.com/${require('os').networkInterfaces().wlan0[0].mac}-${objectName}-${new Date().toString().split(' ').join('-')}`, {
+        //require('os').networkInterfaces().wlan0[0].mac
+        fetch(`https://piero-test.s3.amazonaws.com/${a-mac-address}-${objectName}-${new Date().toString().split(' ').join('-')}`, {
             method: 'put',
             headers: {
                 'Content-Type': 'application/json'
