@@ -26,7 +26,7 @@ function startPythonProcess() {
 
     sendMessage(`PYTHON_PROCESS_STARTED`, '');
 
-    return pythonProcess;
+    // return pythonProcess;
 }
 
 function sendMessage(objectName, objectContents) {
