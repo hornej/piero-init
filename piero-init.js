@@ -4,7 +4,7 @@ const fetch = require('isomorphic-fetch')
 
 startPythonProcess().then((pythonProcess) => {
     schedule.scheduleJob({
-        second: 10
+        minute: 5
     }, () => {
         sendMessage(`KILL_PYTHON_PROCESS`, '');
         pythonProcess.kill('SIGINT');
