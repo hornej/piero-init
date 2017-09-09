@@ -3,33 +3,34 @@ const fs = require('fs');
 const fetch = require('isomorphic-fetch')
 
 startPythonProcess().then((pythonProcess) => {
-    schedule.scheduleJob({
-        minute: 5
-    }, () => {
-        sendMessage(`KILL_PYTHON_PROCESS`, '');
-        pythonProcess.kill('SIGINT');
-        
-        sendMessage(`START_UPDATE`, '').then(() => {
-            require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
-        });
-    });
+    // schedule.scheduleJob({
+    //     minute: 5
+    // }, () => {
+    //     sendMessage(`KILL_PYTHON_PROCESS`, '');
+    //     pythonProcess.kill('SIGINT');
+    //
+    //     sendMessage(`START_UPDATE`, '').then(() => {
+    //         require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
+    //     });
+    // });
 });
 
 function startPythonProcess() {
     return new Promise((resolve, reject) => {
         sendMessage(`START_PYTHON_PROCESS`, '').then(() => {
-            const pythonProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
-            pythonProcess.on('error', (error) => {
-                sendMessage(`PYTHON_PROCESS_ERROR`, error.toString());
-            });
-            pythonProcess.stdout.on('data', (data) => {
-                sendMessage(`PYTHON_PROCESS_STDOUT`, data.toString());
-            });
-            pythonProcess.stderr.on('data', (data) => {
-                sendMessage(`PYTHON_PROCESS_STDERR`, data.toString());
-            });
-
-            resolve(pythonProcess);
+            // const pythonProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
+            // pythonProcess.on('error', (error) => {
+            //     sendMessage(`PYTHON_PROCESS_ERROR`, error.toString());
+            // });
+            // pythonProcess.stdout.on('data', (data) => {
+            //     sendMessage(`PYTHON_PROCESS_STDOUT`, data.toString());
+            // });
+            // pythonProcess.stderr.on('data', (data) => {
+            //     sendMessage(`PYTHON_PROCESS_STDERR`, data.toString());
+            // });
+            //
+            // resolve(pythonProcess);
+            resolve();
         });
     });
 }
