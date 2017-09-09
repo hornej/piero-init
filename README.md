@@ -16,7 +16,7 @@ Make sure you can connect to your device, and that it is connected to the Intern
 Run the following command on your device:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/hornej/piero-ota-update/master/piero-init.sh | bash
+wget -qO- https://raw.githubusercontent.com/hornej/piero-ota-update/master/piero-ota-update.sh | bash
 ```
 
 Your device will now be initialized and will restart itself. On startup, `piero-init.js` will execute.
