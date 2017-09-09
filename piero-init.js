@@ -2,7 +2,7 @@ const schedule = require('node-schedule');
 const fs = require('fs');
 const git = require('simple-git')('../piero');
 
-const childProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
+let childProcess = startPythonProcess();
 
 schedule.scheduleJob({
     second: 5
@@ -16,12 +16,17 @@ schedule.scheduleJob({
 
         if (data) {
             console.log('data');
-            //TODO kill the python process
             //TODO start the python process again
             //TODO send out success message
-            childProcess.kill('SIGINT');
+            childProcess.kill('SIGINT'); //TODO I want to be sure the process is killed
+            childProcess = startPythonProcess();
             fs.writeFileSync(`/home/chip/success-${new Date()}`, data);
             return;
         }
     });
 });
+
+//TODO I want to be sure the process is started correctly
+function startPythonProcess() {
+    return require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
+}

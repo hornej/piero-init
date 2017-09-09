@@ -16,9 +16,6 @@
   "homepage": "https://github.com/hornej/piero-init#readme",
   "dependencies": {
     "node-schedule": "^1.2.4",
-    "nodemailer": "^4.1.0",
-    "nodemailer-smtp-transport": "^2.7.4",
-    "simple-git": "^1.77.0",
-    "smtp-server": "^3.1.0"
+    "simple-git": "^1.77.0"
   }
 }
