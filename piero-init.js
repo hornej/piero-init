@@ -7,8 +7,8 @@ const pythonProcess = startPythonProcess();
 schedule.scheduleJob({
     second: 10
 }, () => {
+    pythonProcess.kill('SIGINT');
     sendMessage(`START_UPDATE`, '');
-    // pythonProcess.kill('SIGINT');
     // require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
 });
 
