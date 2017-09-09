@@ -38,7 +38,9 @@ function startPythonProcess() {
 function sendMessage(objectName, objectContents, numTries) {
     if (numTries === 0) {
         fs.writeFileSync(`/home/chip/piero-init-send-message-out-of-tries-${new Date()}`, 'The request was retried too many times and failed every time');
+        return;
     }
+    
     return fetch(`https://piero-test.s3.amazonaws.com/${objectName}-${new Date().toString().split(' ').join('')}`, {
         method: 'put',
         headers: {
