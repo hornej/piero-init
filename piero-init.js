@@ -3,7 +3,7 @@ const fs = require('fs');
 const pythonProcess = startPythonProcess();
 
 schedule.scheduleJob({
-    minute: 17
+    second: 5
 }, () => {
     //childProcess.kill('SIGINT'); //TODO we might want to kill the python process...maybe not though...probably not
     require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
