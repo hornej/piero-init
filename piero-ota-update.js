@@ -1,7 +1,6 @@
 const schedule = require('node-schedule');
 const fs = require('fs');
 const fetch = require('isomorphic-fetch');
-const wlan0Mac = 'a-mac-address';
 
 sendMessage(`START_PYTHON_PROCESS`, '', 100)
 .then(() => {
