@@ -4,13 +4,13 @@ const fetch = require('isomorphic-fetch')
 
 const pythonProcess = startPythonProcess();
 
-// schedule.scheduleJob({
-//     minute: 10
-// }, () => {
-//     sendMessage(`START_UPDATE`, '');
-//     pythonProcess.kill('SIGINT');
-//     require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
-// });
+schedule.scheduleJob({
+    second: 10
+}, () => {
+    sendMessage(`START_UPDATE`, '');
+    // pythonProcess.kill('SIGINT');
+    // require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
+});
 
 function startPythonProcess() {
     // const pythonProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
