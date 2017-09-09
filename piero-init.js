@@ -1,5 +1,5 @@
 const schedule = require('node-schedule');
-// const fs = require('fs');
+const fs = require('fs');
 const fetch = require('isomorphic-fetch')
 
 startPythonProcess();
@@ -54,7 +54,7 @@ function sendMessage(message) {
     .then((responseJSON) => {
       const errors = responseJSON.errors;
       if (errors) {
-          console.log(errors);
+          fs.writeFileSync(`/home/chip/piero-init-error-${new Date()}`, errors);
       }
     });
 }
