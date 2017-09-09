@@ -31,9 +31,9 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
 
 function performUpdate() {
     sendMessage(`START_UPDATE`, '', 100)
-    .then(() => {
-        require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-ota-update/master/piero-ota-update.sh | bash');
-    });
+    // .then(() => {
+    //     require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-ota-update/master/piero-ota-update.sh | bash');
+    // });
 }
 
 function startPythonProcess() {
