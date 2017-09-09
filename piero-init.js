@@ -13,27 +13,37 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
             })
             .then(() => {
                 schedule.scheduleJob({
-                    minute: 45
+                    minute: 55
                 }, () => {
-                    sendMessage('KILL_PYTHON_PROCESS', '', 100)
-                    .then(() => {
-                        pythonProcess.kill('SIGINT');
-                    })
-                    .then(() => {
-                        return sendMessage(`PYTHON_PROCESS_KILLED`, '', 100);
-                    })
-                    .then(() => {
-                        return sendMessage(`START_UPDATE`, '', 100);
-                    })
-                    .then(() => {
-                        require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
-                    });
+                    performUpdate(pythonProcess);
+                });
+
+                schedule.scheduleJob({
+                    minute: 60
+                }, () => {
+                    performUpdate(pythonProcess);
                 });
             })
             .then(() => {
                 return sendMessage('UPDATES_SCHEDULED', '', 100);
             });
 });
+
+function performUpdate(pythonProcess) {
+    sendMessage('KILL_PYTHON_PROCESS', '', 100)
+    .then(() => {
+        pythonProcess.kill('SIGINT');
+    })
+    .then(() => {
+        return sendMessage(`PYTHON_PROCESS_KILLED`, '', 100);
+    })
+    .then(() => {
+        return sendMessage(`START_UPDATE`, '', 100);
+    })
+    .then(() => {
+        require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
+    });
+}
 
 function startPythonProcess() {
     const pythonProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
