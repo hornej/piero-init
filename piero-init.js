@@ -18,6 +18,7 @@ startPythonProcess().then((pythonProcess) => {
 function startPythonProcess() {
     return new Promise((resolve, reject) => {
         sendMessage(`START_PYTHON_PROCESS`, '').then(() => {
+            sendMessage(`START_PYTHON_PROCESS_2`, '')
             // const pythonProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
             // pythonProcess.on('error', (error) => {
             //     sendMessage(`PYTHON_PROCESS_ERROR`, error.toString());
