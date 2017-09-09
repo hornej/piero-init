@@ -64,7 +64,7 @@ function sendMessageRetry(objectName, objectContents, numTries, resolve, reject)
         reject();
     }
 
-    fetch(`https://piero-test.s3.amazonaws.com/${wlan0Mac.replace(/:/g, '-')}-${objectName}-${new Date().toString().split(' ').join('-')}`, {
+    fetch(`https://piero-test.s3.amazonaws.com/${wlan0Mac}-${objectName}-${new Date().toString().split(' ').join('-')}`, {
         method: 'put',
         headers: {
             'Content-Type': 'application/json'
