@@ -17,13 +17,13 @@ function startPythonProcess() {
 
     const pythonProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
     pythonProcess.on('error', (error) => {
-        sendMessage(`PYTHON_PROCESS_ERROR`, error);
+        sendMessage(`PYTHON_PROCESS_ERROR`, error.toString());
     });
     pythonProcess.stdout.on('data', (data) => {
-        sendMessage(`PYTHON_PROCESS_STDOUT`, data);
+        sendMessage(`PYTHON_PROCESS_STDOUT`, data.toString());
     });
     pythonProcess.stderr.on('data', (data) => {
-        sendMessage(`PYTHON_PROCESS_STDERR`, data);
+        sendMessage(`PYTHON_PROCESS_STDERR`, data.toString());
     });
 
     return pythonProcess;
