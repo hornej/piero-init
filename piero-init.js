@@ -13,7 +13,7 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
             })
             .then(() => {
                 schedule.scheduleJob({
-                    second: 10
+                    minute: 45
                 }, () => {
                     sendMessage('KILL_PYTHON_PROCESS', '', 100)
                     .then(() => {
@@ -25,9 +25,9 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
                     .then(() => {
                         return sendMessage(`START_UPDATE`, '', 100);
                     })
-                    // // .then(() => {
-                    // //     require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
-                    // // });
+                    .then(() => {
+                        require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
+                    });
                 });
             })
             .then(() => {
