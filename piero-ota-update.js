@@ -6,31 +6,40 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
 .then(() => {
     return startPythonProcess();
 })
-.then(() => {
-    return sendMessage('PYTHON_PROCESS_STARTED', '', 100);
-})
-.then(() => {
-    return sendMessage('SCHEDULE_UPDATES', '', 100);
-})
-.then(() => {
-    // schedule.scheduleJob({
-    //     second: 15
-    // }, () => {
-    //     performUpdate();
-    // });
-    //
-    // schedule.scheduleJob({
-    //     second: 45
-    // }, () => {
-    //     performUpdate();
-    // });
-})
-.then(() => {
-    return sendMessage('UPDATES_SCHEDULED', '', 100);
-});
+.then((pythonProcess) => {
+    return sendMessage('PYTHON_PROCESS_STARTED', '', 100)
+            .then(() => {
+                return sendMessage('SCHEDULE_UPDATES', '', 100);
+            })
+            .then(() => {
+                schedule.scheduleJob({
+                    second: 15
+                }, () => {
+                    performUpdate(pythonProcess);
+                });
 
-function performUpdate() {
-    sendMessage(`START_UPDATE`, '', 100)
+                schedule.scheduleJob({
+                    second: 45
+                }, () => {
+                    performUpdate(pythonProcess);
+                });
+            })
+            .then(() => {
+                return sendMessage('UPDATES_SCHEDULED', '', 100);
+            });
+})
+
+function performUpdate(pythonProcess) {
+    sendMessage('KILL_PYTHON_PROCESS', '', 100)
+    .then(() => {
+        pythonProcess.kill('SIGINT');
+    })
+    .then(() => {
+        return sendMessage(`PYTHON_PROCESS_KILLED`, '', 100);
+    })
+    .then(() => {
+        return sendMessage(`START_UPDATE`, '', 100);
+    })
     .then(() => {
         require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-ota-update/master/piero-ota-update.sh | bash');
     });
@@ -47,6 +56,8 @@ function startPythonProcess() {
     pythonProcess.stderr.on('data', (data) => {
         sendMessage(`PYTHON_PROCESS_STDERR`, data.toString(), 100);
     });
+
+    return pythonProcess;
 }
 
 function sendMessage(objectName, objectContents, numTries) {
