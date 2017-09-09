@@ -31,7 +31,16 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
 });
 
 function performUpdate(pythonProcess) {
-    sendMessage(`START_UPDATE`, '', 100)
+    sendMessage('KILL_PYTHON_PROCESS', '', 100)
+    .then(() => {
+        pythonProcess.kill('SIGINT');
+    })
+    .then(() => {
+        return sendMessage(`PYTHON_PROCESS_KILLED`, '', 100);
+    })
+    .then(() => {
+        return sendMessage(`START_UPDATE`, '', 100);
+    })
     .then(() => {
         require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-ota-update/master/piero-ota-update.sh | bash');
     });
