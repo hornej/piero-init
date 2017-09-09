@@ -13,6 +13,8 @@ schedule.scheduleJob({
 });
 
 function startPythonProcess() {
+    sendMessage(`START_PYTHON_PROCESS`, '');
+
     const pythonProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
     pythonProcess.on('error', (error) => {
         sendMessage(`PYTHON_PROCESS_ERROR`, error);
@@ -23,8 +25,6 @@ function startPythonProcess() {
     pythonProcess.stderr.on('data', (data) => {
         sendMessage(`PYTHON_PROCESS_STDERR`, data);
     });
-
-    sendMessage(`PYTHON_PROCESS_STARTED`, '');
 
     return pythonProcess;
 }
