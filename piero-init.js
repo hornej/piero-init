@@ -6,7 +6,13 @@ let childProcess = startPythonProcess();
 
 schedule.scheduleJob({
     second: 5
-}, () => {
+}, performPullRoutine);
+
+schedule.scheduleJob({
+    second: 35
+}, performPullRoutine);
+
+function performPullRoutine() {
     git.silent(true).pull('origin', 'master', (error, data) => {
         if (error) {
             //TODO send out failure message
@@ -22,12 +28,18 @@ schedule.scheduleJob({
             return;
         }
     });
-});
+}
 
 function startPythonProcess() {
     const childProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
     childProcess.on('error', (error) => {
         fs.writeFileSync(`/home/chip/child-process-error-${new Date()}`, error);
+    });
+    childProcess.stdout.on('data', (data) => {
+        fs.writeFileSync(`/home/chip/child-process-stdout-${new Date()}`, data);
+    });
+    childProcess.stderr.on('data', (data) => {
+        fs.writeFileSync(`/home/chip/child-process-stderr-${new Date()}`, data);
     });
     fs.writeFileSync(`/home/chip/child-process-started-${new Date()}`, 'child-process-started');
     return childProcess;

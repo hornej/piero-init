@@ -8,7 +8,6 @@ Make sure you can connect to your device, and that it is connected to the intern
 
 Run the following command on your device:
 
-TODO change ownership of this repo to Josh
 ```bash
 wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash
 ```
