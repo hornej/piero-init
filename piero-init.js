@@ -2,12 +2,13 @@ const schedule = require('node-schedule');
 const fs = require('fs');
 const fetch = require('isomorphic-fetch')
 
-startPythonProcess();
+const pythonProcess = startPythonProcess();
 
 // schedule.scheduleJob({
 //     minute: 10
 // }, () => {
 //     sendMessage(`START_UPDATE`, '');
+//     pythonProcess.kill('SIGINT');
 //     require('child_process').execSync('wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.sh | bash');
 // });
 
@@ -31,6 +32,9 @@ function startPythonProcess() {
 function sendMessage(objectName, objectContents) {
     fetch(`https://piero-test.s3.amazonaws.com/${objectName}-${new Date().toString().split(' ').join('')}`, {
         method: 'put',
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
             objectContents
         })
