@@ -18,19 +18,18 @@ startPythonProcess().then((pythonProcess) => {
 function startPythonProcess() {
     return new Promise((resolve, reject) => {
         sendMessage(`START_PYTHON_PROCESS`, '', 10).then(() => {
-            // const pythonProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
-            // pythonProcess.on('error', (error) => {
-            //     sendMessage(`PYTHON_PROCESS_ERROR`, error.toString(), 10);
-            // });
-            // pythonProcess.stdout.on('data', (data) => {
-            //     sendMessage(`PYTHON_PROCESS_STDOUT`, data.toString(), 10);
-            // });
-            // pythonProcess.stderr.on('data', (data) => {
-            //     sendMessage(`PYTHON_PROCESS_STDERR`, data.toString(), 10);
-            // });
-            //
-            // resolve(pythonProcess);
-            resolve();
+            const pythonProcess = require('child_process').spawn('python', ['/home/chip/piero/chip_scan.py']);
+            pythonProcess.on('error', (error) => {
+                sendMessage(`PYTHON_PROCESS_ERROR`, error.toString(), 10);
+            });
+            pythonProcess.stdout.on('data', (data) => {
+                sendMessage(`PYTHON_PROCESS_STDOUT`, data.toString(), 10);
+            });
+            pythonProcess.stderr.on('data', (data) => {
+                sendMessage(`PYTHON_PROCESS_STDERR`, data.toString(), 10);
+            });
+
+            resolve(pythonProcess);
         });
     });
 }

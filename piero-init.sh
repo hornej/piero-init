@@ -1,3 +1,6 @@
+#TODO install node 8 and use async/await
+#TODO use correct time: sudo apt-get install ntp
+
 echo "Move to /home/chip"
 cd /home/chip
 
