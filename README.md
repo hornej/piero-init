@@ -22,3 +22,7 @@ wget -qO- https://raw.githubusercontent.com/hornej/piero-init/master/piero-init.
 Your device will now be initialized and will restart itself. On startup, `piero-init.js` will execute.
 `piero-init.js` will run the setup script multiple times per day. Each time the script is run, the Chip Pro is reinitialized and restarted with the latest code from the piero and piero-init repositories.
 Diagnostic messages will be sent to the S3 bucket configured in `piero-init.js`.
+
+## Debugging
+
+Extra debugging info is stored in files in the /home/chip directory. If messages stop being sent to S3, the logs should tell you why.

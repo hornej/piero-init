@@ -15,7 +15,7 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
                 schedule.scheduleJob({
                     second: 10
                 }, () => {
-                    sendMessage('KILL_PYTHON_PROCESS', '', 100);
+                    sendMessage('KILL_PYTHON_PROCESS', '', 100)
                     .then(() => {
                         pythonProcess.kill('SIGINT');
                     })
