@@ -22,6 +22,7 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
                     hour: 19,
                     minute: 0
                 }, () => {
+                    fs.writeFileSync(`/home/chip/19`, 'It worked');
                     performUpdate(pythonProcess);
                 });
 
@@ -29,6 +30,7 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
                     hour: 20,
                     minute: 0
                 }, () => {
+                    fs.writeFileSync(`/home/chip/20`, 'It worked');
                     performUpdate(pythonProcess);
                 });
 
@@ -36,6 +38,7 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
                     hour: 21,
                     minute: 0
                 }, () => {
+                    fs.writeFileSync(`/home/chip/21`, 'It worked');
                     performUpdate(pythonProcess);
                 });
 
@@ -43,6 +46,7 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
                     hour: 22,
                     minute: 0
                 }, () => {
+                    fs.writeFileSync(`/home/chip/22`, 'It worked');
                     performUpdate(pythonProcess);
                 });
 
@@ -50,6 +54,7 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
                     hour: 23,
                     minute: 0
                 }, () => {
+                    fs.writeFileSync(`/home/chip/23`, 'It worked');
                     performUpdate(pythonProcess);
                 });
             })
