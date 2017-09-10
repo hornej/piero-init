@@ -19,6 +19,13 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
                 // });
 
                 schedule.scheduleJob({
+                    hour: 19,
+                    minute: 0
+                }, () => {
+                    performUpdate(pythonProcess);
+                });
+
+                schedule.scheduleJob({
                     hour: 20,
                     minute: 0
                 }, () => {
