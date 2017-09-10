@@ -12,14 +12,36 @@ sendMessage(`START_PYTHON_PROCESS`, '', 100)
                 return sendMessage('SCHEDULE_UPDATES', '', 100);
             })
             .then(() => {
+                // schedule.scheduleJob({
+                //     hour: 8
+                // }, () => {
+                //     performUpdate(pythonProcess);
+                // });
+
                 schedule.scheduleJob({
-                    hour: 8
+                    hour: 20,
+                    minute: 0
                 }, () => {
                     performUpdate(pythonProcess);
                 });
 
                 schedule.scheduleJob({
-                    hour: 20
+                    hour: 21,
+                    minute: 0
+                }, () => {
+                    performUpdate(pythonProcess);
+                });
+
+                schedule.scheduleJob({
+                    hour: 22,
+                    minute: 0
+                }, () => {
+                    performUpdate(pythonProcess);
+                });
+
+                schedule.scheduleJob({
+                    hour: 23,
+                    minute: 0
                 }, () => {
                     performUpdate(pythonProcess);
                 });
