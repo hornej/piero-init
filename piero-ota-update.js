@@ -99,7 +99,6 @@ function sendMessageRetry(objectName, objectContents, resolve, reject) {
             }, null, '\t')
         })
         .then(() => {
-            fs.writeFileSync(`/home/chip/piero-ota-update-send-message-success-${new Date()}`, 'The message was sent successfully');
             resolve();
         })
         .catch((error) => {
