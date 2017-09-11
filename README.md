@@ -23,7 +23,7 @@ The diagnostic objects have the following format:
 
 Make sure you can connect to your device, and that it is connected to the Internet. [See here for more detailed information](https://docs.getchip.com/chip_pro.html#connect-and-control).
 
-Run the following command on your device:
+Run the following command on your device (make sure you are root user):
 
 ```bash
 wget -qO- https://raw.githubusercontent.com/hornej/piero-ota-update/master/piero-ota-update.sh | bash
