@@ -8,6 +8,16 @@ This repository contains all of the code necessary to initialize automatic sched
 
 Create an S3 bucket on AWS. Set public write permissions on the bucket. Copy the URL of the bucket into the fetch function of the sendMessage function in `piero-ota-update.js`.
 The URL has the format `https://[bucket name].s3.amazonaws.com/[object name]`. This will save diagnostic objects with the name of `object name` to the bucket.
+The diagnostic objects have the following format:
+
+```json
+{
+    "objectContents": "The contents of the message being sent",
+    "cpus": "Information about the CPUs on the device, from Node.js require('os').cpus()",
+    "totalmem": "The total memory on the device in bytes, from Node.js require('os').totalmem()",
+    "freemem": "The total free memory on the device in bytes, from Node.js require('os').freemem()"
+}
+```
 
 ### Chip Pro
 
@@ -25,4 +35,4 @@ Diagnostic messages will be sent to the S3 bucket configured in `piero-ota-updat
 
 ## Debugging
 
-Extra debugging info is stored in files in the /home/chip directory. If messages stop being sent to S3, the logs should tell you why.
+Extra debugging info is stored in files in the /home/chip directory. If messages stop being sent to S3, these files should provide helpful information.
