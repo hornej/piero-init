@@ -9,8 +9,11 @@ git clone https://github.com/hornej/piero-ota-update.git
 
 #TODO Clearnig the npm cache should not be necessary once using a version of Node with npm 5 or greater
 # Clearing the cache will ensure that the cache is not in an inconsistent state because of unexpected interruptions during npm installs
-echo "Clearing npm cache"
-npm cache clean
+#echo "Clearing npm cache"
+#npm cache clean
+
+echo "Installing npm version 5.4.1 for deterministic installs"
+npm install -g npm@5.4.1
 
 echo "Installing npm dependencies"
 cd piero-ota-update
