@@ -81,8 +81,7 @@ function startPythonProcess() {
 
 function sendMessage(objectName, objectContents) {
     return new Promise((resolve, reject) => {
-        resolve();
-        // sendMessageRetry(objectName, objectContents, resolve, reject);
+        sendMessageRetry(objectName, objectContents, resolve, reject);
     });
 }
 
