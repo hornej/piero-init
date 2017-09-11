@@ -19,7 +19,7 @@ cd ..
 
 echo "Cloning piero repository"
 rm -rf piero
-git clone https://github.com/hornej/piero.git
+git clone https://github.com/lastmjs/piero.git
 
 echo "Installing CHIP_IO"
 cd piero
