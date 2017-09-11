@@ -99,5 +99,5 @@ function sendMessageRetry(objectName, objectContents, resolve, reject) {
 function retryTimeout(objectName, objectContents, resolve, reject) {
     setTimeout(() => {
         sendMessageRetry(objectName, objectContents, resolve, reject);
-    }, 5000);
+    }, 1000);
 }
