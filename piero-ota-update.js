@@ -13,7 +13,8 @@ sendMessage(`START_PYTHON_PROCESS`, '')
             })
             .then(() => {
                 schedule.scheduleJob({
-                    hour: 10
+                    hour: 10,
+                    minute: 45
                 }, () => {
                     performUpdate(pythonProcess);
                 });
