@@ -13,41 +13,34 @@ sendMessage(`START_PYTHON_PROCESS`, '')
             })
             .then(() => {
                 schedule.scheduleJob({
-                    second: 15
+                    hour: 8
                 }, () => {
+                    fs.writeFileSync(`/home/chip/8`, 'It worked');
                     performUpdate(pythonProcess);
                 });
 
-                // schedule.scheduleJob({
-                //     hour: 8
-                // }, () => {
-                //     fs.writeFileSync(`/home/chip/8`, 'It worked');
-                //     performUpdate(pythonProcess);
-                // });
-                //
-                // schedule.scheduleJob({
-                //     hour: 8,
-                //     minute: 0
-                // }, () => {
-                //     fs.writeFileSync(`/home/chip/8-0`, 'It worked');
-                //     performUpdate(pythonProcess);
-                // });
-                //
-                // schedule.scheduleJob({
-                //     hour: 20
-                // }, () => {
-                //     fs.writeFileSync(`/home/chip/20`, 'It worked');
-                //     performUpdate(pythonProcess);
-                // });
-                //
-                // schedule.scheduleJob({
-                //     hour: 20,
-                //     minute: 0
-                // }, () => {
-                //     fs.writeFileSync(`/home/chip/20-0`, 'It worked');
-                //     performUpdate(pythonProcess);
-                // });
+                schedule.scheduleJob({
+                    hour: 8,
+                    minute: 0
+                }, () => {
+                    fs.writeFileSync(`/home/chip/8-0`, 'It worked');
+                    performUpdate(pythonProcess);
+                });
 
+                schedule.scheduleJob({
+                    hour: 20
+                }, () => {
+                    fs.writeFileSync(`/home/chip/20`, 'It worked');
+                    performUpdate(pythonProcess);
+                });
+
+                schedule.scheduleJob({
+                    hour: 20,
+                    minute: 0
+                }, () => {
+                    fs.writeFileSync(`/home/chip/20-0`, 'It worked');
+                    performUpdate(pythonProcess);
+                });
             })
             .then(() => {
                 return sendMessage('UPDATES_SCHEDULED', '');
