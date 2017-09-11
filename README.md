@@ -36,3 +36,7 @@ Diagnostic messages will be sent to the S3 bucket configured in `piero-ota-updat
 ## Debugging
 
 Extra debugging info is stored in files in the /home/chip directory. If messages stop being sent to S3, these files should provide helpful information.
+
+## Notes
+
+* node_modules is checked in to get rid of any possible issues with the npm cache, npm installs, and any reproducibility problems caused by transitive dependencies. Since we are not using npm 5 and the npm dependencies are small, this is a simple workable solution.
