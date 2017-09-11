@@ -103,7 +103,6 @@ function sendMessageRetry(objectName, objectContents, resolve, reject) {
             resolve();
         })
         .catch((error) => {
-            require('child_process').execSync('free -m >> memory-usage');
             fs.writeFileSync(`/home/chip/piero-ota-update-send-message-error-${new Date()}`, error);
             retryTimeout(objectName, objectContents, resolve, reject);
         });
