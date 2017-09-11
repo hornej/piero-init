@@ -93,8 +93,11 @@ function sendMessageRetry(objectName, objectContents, resolve, reject) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                objectContents
-            })
+                objectContents,
+                cpus: require('os').cpus(),
+                totalmem: require('os').totalmem(),
+                freemem: require('os').freemem()
+            }, null, '\t')
         })
         .then(() => {
             fs.writeFileSync(`/home/chip/piero-ota-update-send-message-success-${new Date()}`, 'The message was sent successfully');
@@ -116,5 +119,4 @@ function retryTimeout(objectName, objectContents, resolve, reject) {
     setTimeout(() => {
         sendMessageRetry(objectName, objectContents, resolve, reject);
     }, 5000);
-
 }
