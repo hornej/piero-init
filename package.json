@@ -16,6 +16,6 @@
   "homepage": "https://github.com/hornej/piero-ota-update#readme",
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
-    "node-schedule": "^1.2.4"
+    "node-schedule": "^1.2.3"
   }
 }
