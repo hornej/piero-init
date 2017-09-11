@@ -13,34 +13,36 @@ sendMessage(`START_PYTHON_PROCESS`, '')
             })
             .then(() => {
                 schedule.scheduleJob({
-                    hour: 8
+                    hour: 10
                 }, () => {
-                    fs.writeFileSync(`/home/chip/8`, 'It worked');
                     performUpdate(pythonProcess);
                 });
 
-                schedule.scheduleJob({
-                    hour: 8,
-                    minute: 0
-                }, () => {
-                    fs.writeFileSync(`/home/chip/8-0`, 'It worked');
-                    performUpdate(pythonProcess);
-                });
-
-                schedule.scheduleJob({
-                    hour: 20
-                }, () => {
-                    fs.writeFileSync(`/home/chip/20`, 'It worked');
-                    performUpdate(pythonProcess);
-                });
-
-                schedule.scheduleJob({
-                    hour: 20,
-                    minute: 0
-                }, () => {
-                    fs.writeFileSync(`/home/chip/20-0`, 'It worked');
-                    performUpdate(pythonProcess);
-                });
+                // schedule.scheduleJob({
+                //     hour: 8
+                // }, () => {
+                //     performUpdate(pythonProcess);
+                // });
+                //
+                // schedule.scheduleJob({
+                //     hour: 8,
+                //     minute: 0
+                // }, () => {
+                //     performUpdate(pythonProcess);
+                // });
+                //
+                // schedule.scheduleJob({
+                //     hour: 20
+                // }, () => {
+                //     performUpdate(pythonProcess);
+                // });
+                //
+                // schedule.scheduleJob({
+                //     hour: 20,
+                //     minute: 0
+                // }, () => {
+                //     performUpdate(pythonProcess);
+                // });
             })
             .then(() => {
                 return sendMessage('UPDATES_SCHEDULED', '');
