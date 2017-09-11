@@ -13,37 +13,18 @@ sendMessage(`START_PYTHON_PROCESS`, '')
             })
             .then(() => {
                 schedule.scheduleJob({
-                    hour: 11,
+                    hour: 8,
                     minute: 0
                 }, () => {
                     performUpdate(pythonProcess);
                 });
 
-                // schedule.scheduleJob({
-                //     hour: 8
-                // }, () => {
-                //     performUpdate(pythonProcess);
-                // });
-                //
-                // schedule.scheduleJob({
-                //     hour: 8,
-                //     minute: 0
-                // }, () => {
-                //     performUpdate(pythonProcess);
-                // });
-                //
-                // schedule.scheduleJob({
-                //     hour: 20
-                // }, () => {
-                //     performUpdate(pythonProcess);
-                // });
-                //
-                // schedule.scheduleJob({
-                //     hour: 20,
-                //     minute: 0
-                // }, () => {
-                //     performUpdate(pythonProcess);
-                // });
+                schedule.scheduleJob({
+                    hour: 20,
+                    minute: 0
+                }, () => {
+                    performUpdate(pythonProcess);
+                });
             })
             .then(() => {
                 return sendMessage('UPDATES_SCHEDULED', '');
